@@ -12,7 +12,7 @@ class CouncilTaxFetcher
   end
 
   def council_tax
-    CouncilTaxFinder.new(data: council_tax_data)
+    CouncilTaxFinder.result(results: council_tax_data, address: @address)
   end
 
   private

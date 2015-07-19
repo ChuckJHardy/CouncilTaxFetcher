@@ -30,6 +30,16 @@ Find Exchange Rate:
     )
     # => #<CouncilTaxFetcher:0x>
 
+    result = council_tax_fetcher.council_tax
+    # => #<CouncilTaxFetcher::Result:0x>
+    # => #<CouncilTaxFetcher::NullResult:0x>
+
+    result.tax
+    # => #<CouncilTaxFetcher::Result::Tax:0x>
+
+    result.tax.year
+    # => 181615
+
 ## Testing
 
 Ensure `OPENSIGNAL_API_KEY` environment variable is set when recording VCR cassettes.

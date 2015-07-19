@@ -12,7 +12,7 @@ RSpec.describe CouncilTaxFetcher do
     it 'returns CouncilTaxFinder object' do
       VCR.use_cassette('valid/council_tax') do
         expect(instance.council_tax)
-          .to be_an_instance_of(CouncilTaxFetcher::CouncilTaxFinder)
+          .to be_an_instance_of(CouncilTaxFetcher::Result)
       end
     end
   end
