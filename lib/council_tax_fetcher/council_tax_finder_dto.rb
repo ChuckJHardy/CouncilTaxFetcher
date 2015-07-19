@@ -1,7 +1,16 @@
 class CouncilTaxFetcher
   class CouncilTaxFinderDTO < DTO
+    def initialize(*args)
+      super(*args)
+      CouncilTaxFetcher.configuration.domain = domain
+    end
+
+    def domain
+      'http://counciltaxfinder.com/mobile/Home/'
+    end
+
     def endpoint
-      "http://counciltaxfinder.com/mobile/Home/SearchProperty?address=&zipCode=#{postcode}&pageNum=1"
+      "SearchProperty?address=&zipCode=#{postcode}&pageNum=1"
     end
 
     private

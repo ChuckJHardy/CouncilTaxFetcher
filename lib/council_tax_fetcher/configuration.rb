@@ -12,9 +12,10 @@ class CouncilTaxFetcher
     private
 
     class Configuration
-      attr_accessor :verbose
+      attr_accessor :domain, :verbose
 
       def initialize
+        self.domain = nil
         self.verbose = false
       end
     end

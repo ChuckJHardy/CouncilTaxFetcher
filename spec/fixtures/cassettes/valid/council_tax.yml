@@ -1,0 +1,86 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://counciltaxfinder.com/mobile/Home/SearchProperty?address=&pageNum=1&zipCode=WA3%202BT
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Microsoft-IIS/8.5
+      X-Aspnet-Version:
+      - 4.0.30319
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 19 Jul 2015 19:42:48 GMT
+      Expires:
+      - "-1"
+      Pragma:
+      - no-cache
+      X-Aspnetmvc-Version:
+      - '2.0'
+      Connection:
+      - Keep-Alive
+      Set-Cookie:
+      - X-Mapping-kjejplbh=A60FB292F9006A85F1147889BDF5CE59; path=/
+      X-Powered-By:
+      - ASP.NET
+      Content-Length:
+      - '1591'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3siQWRkcmVzcyI6IjEsIERSQVBFUlMgQ09VUlQsIExPV1RPTiwgV0FSUklO
+        R1RPTiwgIFdBMyAyQlQiLCJDTmFtZSI6IldJR0FOIiwiQ291bmNpbFRheGJh
+        bmQiOiJEIiwiSW1wcm92ZW1lbnRJbmRpY2F0b3IiOiIiLCJMb2NhbEF1dGhv
+        cml0eVJlZmVyZW5jZU51bWJlciI6IjAzUTI2NzAwMDEwMCIsIlRheCI6IsOC
+        wqMxNDAyLjA4IiwiVGF4TW9udGhseSI6IsOCwqMxMTYuODMiLCJZZWFyIjoi
+        MjAxNS0xNiIsImNvdW5jaWxXZWIiOiJ3aWdhbm1iYy5nb3YudWsifSx7IkFk
+        ZHJlc3MiOiIyLCBEUkFQRVJTIENPVVJULCBMT1dUT04sIFdBUlJJTkdUT04s
+        ICBXQTMgMkJUIiwiQ05hbWUiOiJXSUdBTiIsIkNvdW5jaWxUYXhiYW5kIjoi
+        QyIsIkltcHJvdmVtZW50SW5kaWNhdG9yIjoiIiwiTG9jYWxBdXRob3JpdHlS
+        ZWZlcmVuY2VOdW1iZXIiOiIwM1EyNjcwMDAyMDAiLCJUYXgiOiLDgsKjMTI0
+        Ni4yOSIsIlRheE1vbnRobHkiOiLDgsKjMTAzLjg1IiwiWWVhciI6IjIwMTUt
+        MTYiLCJjb3VuY2lsV2ViIjoid2lnYW5tYmMuZ292LnVrIn0seyJBZGRyZXNz
+        IjoiMywgRFJBUEVSUyBDT1VSVCwgTE9XVE9OLCBXQVJSSU5HVE9OLCAgV0Ez
+        IDJCVCIsIkNOYW1lIjoiV0lHQU4iLCJDb3VuY2lsVGF4YmFuZCI6IkMiLCJJ
+        bXByb3ZlbWVudEluZGljYXRvciI6IiIsIkxvY2FsQXV0aG9yaXR5UmVmZXJl
+        bmNlTnVtYmVyIjoiMDNRMjY3MDAwMzAwIiwiVGF4Ijoiw4LCozEyNDYuMjki
+        LCJUYXhNb250aGx5Ijoiw4LCozEwMy44NSIsIlllYXIiOiIyMDE1LTE2Iiwi
+        Y291bmNpbFdlYiI6IndpZ2FubWJjLmdvdi51ayJ9LHsiQWRkcmVzcyI6IjQs
+        IERSQVBFUlMgQ09VUlQsIExPV1RPTiwgV0FSUklOR1RPTiwgIFdBMyAyQlQi
+        LCJDTmFtZSI6IldJR0FOIiwiQ291bmNpbFRheGJhbmQiOiJFIiwiSW1wcm92
+        ZW1lbnRJbmRpY2F0b3IiOiIiLCJMb2NhbEF1dGhvcml0eVJlZmVyZW5jZU51
+        bWJlciI6IjAzUTI2NzAwMDQwMCIsIlRheCI6IsOCwqMxNzEzLjY0IiwiVGF4
+        TW9udGhseSI6IsOCwqMxNDIuODAiLCJZZWFyIjoiMjAxNS0xNiIsImNvdW5j
+        aWxXZWIiOiJ3aWdhbm1iYy5nb3YudWsifSx7IkFkZHJlc3MiOiI1LCBEUkFQ
+        RVJTIENPVVJULCBMT1dUT04sIFdBUlJJTkdUT04sICBXQTMgMkJUIiwiQ05h
+        bWUiOiJXSUdBTiIsIkNvdW5jaWxUYXhiYW5kIjoiQyIsIkltcHJvdmVtZW50
+        SW5kaWNhdG9yIjoiIiwiTG9jYWxBdXRob3JpdHlSZWZlcmVuY2VOdW1iZXIi
+        OiIwM1EyNjcwMDA1MDAiLCJUYXgiOiLDgsKjMTI0Ni4yOSIsIlRheE1vbnRo
+        bHkiOiLDgsKjMTAzLjg1IiwiWWVhciI6IjIwMTUtMTYiLCJjb3VuY2lsV2Vi
+        Ijoid2lnYW5tYmMuZ292LnVrIn0seyJBZGRyZXNzIjoiNiwgRFJBUEVSUyBD
+        T1VSVCwgTE9XVE9OLCBXQVJSSU5HVE9OLCAgV0EzIDJCVCIsIkNOYW1lIjoi
+        V0lHQU4iLCJDb3VuY2lsVGF4YmFuZCI6IkMiLCJJbXByb3ZlbWVudEluZGlj
+        YXRvciI6IiIsIkxvY2FsQXV0aG9yaXR5UmVmZXJlbmNlTnVtYmVyIjoiMDNR
+        MjY3MDAwNjAwIiwiVGF4Ijoiw4LCozEyNDYuMjkiLCJUYXhNb250aGx5Ijoi
+        w4LCozEwMy44NSIsIlllYXIiOiIyMDE1LTE2IiwiY291bmNpbFdlYiI6Indp
+        Z2FubWJjLmdvdi51ayJ9XQ==
+    http_version: 
+  recorded_at: Sun, 19 Jul 2015 19:42:49 GMT
+recorded_with: VCR 2.9.3
