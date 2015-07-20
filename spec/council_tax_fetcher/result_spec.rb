@@ -22,6 +22,24 @@ RSpec.describe CouncilTaxFetcher::Result do
     end
   end
 
+  describe '#as_hash' do
+    let(:expected_hash) do
+      {
+        band: "D",
+        reference: "03Q267000100",
+        county: "WIGAN",
+        yearly: 140208,
+        monthly: 11683,
+        year: "2015-16",
+        link: "wiganmbc.gov.uk"
+      }
+    end
+
+    it 'returns expected hash' do
+      expect(instance.as_hash).to eq(expected_hash)
+    end
+  end
+
   describe '#tax' do
     it 'returns Tax Object', :aggregate_failures do
       expect(instance.tax).to be_an_instance_of(described_class::Tax)

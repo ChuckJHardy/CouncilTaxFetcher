@@ -8,8 +8,20 @@ class CouncilTaxFetcher
       true
     end
 
+    def as_hash
+      {
+        band: data[:CouncilTaxband],
+        reference: data[:LocalAuthorityReferenceNumber],
+        county: data[:CName],
+        yearly: tax.year,
+        monthly: tax.month,
+        year: data[:Year],
+        link: data[:councilWeb]
+      }
+    end
+
     def tax
-      Tax.new(data: data)
+      @tax ||= Tax.new(data: data)
     end
 
     protected

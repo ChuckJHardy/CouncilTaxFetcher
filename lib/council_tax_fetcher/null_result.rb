@@ -3,5 +3,9 @@ class CouncilTaxFetcher
     def valid?
       false
     end
+
+    def as_hash
+      {}
+    end
   end
 end
