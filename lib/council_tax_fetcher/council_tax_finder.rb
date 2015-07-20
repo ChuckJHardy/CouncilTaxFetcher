@@ -3,6 +3,8 @@ require 'council_tax_fetcher/result'
 require 'council_tax_fetcher/null_result'
 
 class CouncilTaxFetcher
+  NoResult = Class.new(StandardError)
+
   class CouncilTaxFinder
     def initialize(results:, address:)
       @results = results
@@ -15,7 +17,12 @@ class CouncilTaxFetcher
 
     def result
       record = @results.select(&checker).first
-      record ? Result.new(data: record) : NullResult.new
+
+      if record
+        Result.new(data: record)
+      else
+        NullResult.new(postcode: @address, exception: NoResult.new)
+      end
     end
 
     private

@@ -14,8 +14,12 @@ RSpec.describe CouncilTaxFetcher::CouncilTaxFinder do
   context "without match" do
     let(:result) { { Address: "5, DRAPERS COURT, LOWTON, WARRINGTON,  WA3 2BT" } }
 
-    it 'returns best result' do
+    it 'returns best result', :aggregate_failures do
       expect(finder).to be_an_instance_of(CouncilTaxFetcher::NullResult)
+      expect(finder).to have_attributes(
+        postcode: address,
+        exception: an_instance_of(CouncilTaxFetcher::NoResult)
+      )
     end
   end
 end
