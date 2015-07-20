@@ -21,8 +21,10 @@ RSpec.describe CouncilTaxFetcher do
 
       it 'raises error' do
         VCR.use_cassette('invalid/council_tax/bad_request') do
-          expect { instance.council_tax }
-          .to raise_error(CouncilTaxFetcher::BadRequest)
+          expect(instance.council_tax).to have_attributes(
+            postcode: postcode,
+            exception: an_instance_of(CouncilTaxFetcher::BadRequest)
+          )
         end
       end
     end
