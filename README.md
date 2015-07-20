@@ -1,4 +1,4 @@
-# Council Tax Fetcher
+# Council Tax Fetcher [ ![Codeship Status for ChuckJHardy/CouncilTaxFetcher](https://codeship.com/projects/fe615b20-1126-0133-558e-622995d16682/status?branch=master)](https://codeship.com/projects/92202)
 
 Wrapper for the Council Tax Scraping
 
