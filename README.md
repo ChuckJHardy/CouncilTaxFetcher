@@ -30,13 +30,13 @@ Find Exchange Rate:
     )
     # => #<CouncilTaxFetcher:0x>
 
-    results = council_tax_fetcher.council_tax
-    # => [#<CouncilTaxFetcher::Result:0x>]
+    council_tax = council_tax_fetcher.council_tax
+    # => #<CouncilTaxFetcher::CouncilTaxFinder:0x>
 
-    results.first.tax
+    council_tax.results.first.tax
     # => #<CouncilTaxFetcher::Result::Tax:0x>
 
-    results.first.tax.year
+    council_tax.results.first.tax.year
     # => 181615
 
 ## Testing

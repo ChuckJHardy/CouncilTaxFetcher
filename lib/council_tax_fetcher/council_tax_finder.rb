@@ -10,10 +10,6 @@ class CouncilTaxFetcher
       @address = address
     end
 
-    def self.results(*args)
-      new(*args).results
-    end
-
     def each(&block)
       results.each(&block)
     end
