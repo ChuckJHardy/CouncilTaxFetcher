@@ -1,13 +1,14 @@
+require 'council_tax_fetcher/checker'
+
 class CouncilTaxFetcher
   class Result
-    def initialize(data:)
+    def initialize(data:, address:)
       @data = data
+      @address = address
     end
 
-    def valid?
-      true
-    end
-
+    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
     def as_hash
       {
         band: data[:CouncilTaxband],
@@ -16,7 +17,9 @@ class CouncilTaxFetcher
         yearly: tax.year,
         monthly: tax.month,
         year: data[:Year],
-        link: data[:councilWeb]
+        link: data[:councilWeb],
+        estimated_active: checker.bingo?,
+        estimated_active_percentage: checker.percentage
       }
     end
 
@@ -29,6 +32,10 @@ class CouncilTaxFetcher
     attr_reader :data
 
     private
+
+    def checker
+      @checker ||= Checker.new(a: data[:Address], b: @address)
+    end
 
     class Tax
       def initialize(data:)

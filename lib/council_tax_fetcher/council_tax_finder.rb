@@ -1,9 +1,8 @@
 require 'similar_text'
 require 'council_tax_fetcher/result'
-require 'council_tax_fetcher/null_result'
 
 class CouncilTaxFetcher
-  NoResult = Class.new(StandardError)
+  include Enumerable
 
   class CouncilTaxFinder
     def initialize(results:, address:)
@@ -11,45 +10,22 @@ class CouncilTaxFetcher
       @address = address
     end
 
-    def self.result(*args)
-      new(*args).result
+    def self.results(*args)
+      new(*args).results
     end
 
-    def result
-      record = @results.select(&checker).first
+    def each(&block)
+      results.each(&block)
+    end
 
-      if record
-        Result.new(data: record)
-      else
-        NullResult.new(postcode: @address, exception: NoResult.new)
-      end
+    def results
+      @results.map(&result)
     end
 
     private
 
-    def checker
-      ->(record) { Checker.bingo?(a: record[:Address], b: @address) }
-    end
-
-    class Checker
-      THRESHOLD = 98
-
-      def initialize(a:, b:)
-        @a = sanitize(a)
-        @b = sanitize(b)
-      end
-
-      def self.bingo?(*args)
-        new(*args).bingo?
-      end
-
-      def bingo?
-        @a.similar(@b) >= THRESHOLD
-      end
-
-      def sanitize(string)
-        string.downcase.gsub(/[^a-z0-9\s]/i, '')
-      end
+    def result
+      ->(record) { Result.new(data: record, address: @address) }
     end
   end
 end

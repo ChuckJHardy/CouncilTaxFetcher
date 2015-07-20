@@ -12,9 +12,7 @@ class CouncilTaxFetcher
   end
 
   def council_tax
-    CouncilTaxFinder.result(results: council_tax_data, address: @address)
-  rescue BadRequest => e
-    NullResult.new(postcode: @postcode, exception: e)
+    CouncilTaxFinder.results(results: council_tax_data, address: @address)
   end
 
   private
