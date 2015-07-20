@@ -15,5 +15,16 @@ RSpec.describe CouncilTaxFetcher do
           .to be_an_instance_of(CouncilTaxFetcher::Result)
       end
     end
+
+    context "when postcode is invalid" do
+      let(:postcode) { 'AA1 OA8' }
+
+      it 'raises error' do
+        VCR.use_cassette('invalid/council_tax/bad_request') do
+          expect { instance.council_tax }
+          .to raise_error(CouncilTaxFetcher::BadRequest)
+        end
+      end
+    end
   end
 end

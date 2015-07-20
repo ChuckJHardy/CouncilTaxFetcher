@@ -2,6 +2,8 @@ require 'faraday'
 require 'faraday_middleware'
 require 'faraday_middleware/multi_json'
 
+require 'council_tax_fetcher/validate'
+
 class CouncilTaxFetcher
   class API
     def self.get(*args)
@@ -9,7 +11,9 @@ class CouncilTaxFetcher
     end
 
     def get(url:, options: {})
-      connection.get(URI.escape(url), options)
+      connection.get(URI.escape(url), options).tap do |response|
+        Validate.using(response)
+      end
     end
 
     private
