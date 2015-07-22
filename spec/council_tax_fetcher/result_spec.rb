@@ -22,6 +22,7 @@ RSpec.describe CouncilTaxFetcher::Result do
     let(:expected_hash) do
       {
         band: 'D',
+        address: '1, DRAPERS COURT, LOWTON, WARRINGTON, WA3 2BT',
         reference: '03Q267000100',
         county: 'WIGAN',
         yearly: 140_208,

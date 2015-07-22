@@ -12,6 +12,7 @@ class CouncilTaxFetcher
     def as_hash
       {
         band: data[:CouncilTaxband],
+        address: data[:Address],
         reference: data[:LocalAuthorityReferenceNumber],
         county: data[:CName],
         yearly: tax.year,
