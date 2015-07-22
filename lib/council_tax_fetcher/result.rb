@@ -7,6 +7,14 @@ class CouncilTaxFetcher
       @address = address
     end
 
+    def self.for(*args)
+      new(*args).object_or_nil
+    end
+
+    def object_or_nil
+      self if valid?
+    end
+
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     def as_hash
@@ -26,6 +34,10 @@ class CouncilTaxFetcher
 
     def tax
       @tax ||= Tax.new(data: data)
+    end
+
+    def valid?
+      data[:CouncilTaxband] != 'Deleted'
     end
 
     protected

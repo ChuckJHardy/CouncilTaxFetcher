@@ -15,13 +15,13 @@ class CouncilTaxFetcher
     end
 
     def results
-      @results.map(&result)
+      @results.map(&result).compact
     end
 
     private
 
     def result
-      ->(record) { Result.new(data: record, address: @address) }
+      ->(record) { Result.for(data: record, address: @address) }
     end
   end
 end

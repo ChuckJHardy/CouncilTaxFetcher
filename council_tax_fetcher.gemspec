@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'council_tax_fetcher'
-  spec.version       = '0.0.7'
+  spec.version       = '0.0.8'
   spec.authors       = ['Charles J Hardy']
   spec.email         = ['chuckjhardy@gmail.com']
 

@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 RSpec.describe CouncilTaxFetcher::Result do
-  let(:instance) { described_class.new(data: result, address: address) }
+  let(:instance) { described_class.for(data: data, address: address) }
 
   let(:address) { 'MY HOUSE, 1, DRAPERS COURT, LOWTON, WARRINGTON, WA3 2BT' }
+  let(:data) { result }
   let(:result) do
     {
       Address: '1, DRAPERS COURT, LOWTON, WARRINGTON, WA3 2BT',
@@ -16,6 +17,14 @@ RSpec.describe CouncilTaxFetcher::Result do
       Year: '2015-16',
       councilWeb: 'wiganmbc.gov.uk'
     }
+  end
+
+  describe '#object_or_nil' do
+    let(:data) { result.merge!(CouncilTaxband: 'Deleted') }
+
+    it 'returns expected hash' do
+      expect(instance).to be_nil
+    end
   end
 
   describe '#as_hash' do
