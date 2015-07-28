@@ -1,4 +1,5 @@
 class CouncilTaxFetcher
+  BlankBody = Class.new(StandardError)
   BadRequest = Class.new(StandardError)
 
   class Validate
@@ -11,7 +12,8 @@ class CouncilTaxFetcher
     end
 
     def validate
-      fail CouncilTaxFetcher::BadRequest if bad_request?
+      fail CouncilTaxFetcher::BlankBody, response if blank_body?
+      fail CouncilTaxFetcher::BadRequest, response if bad_request?
     end
 
     protected
@@ -20,8 +22,12 @@ class CouncilTaxFetcher
 
     private
 
+    def blank_body?
+      response.body.length < 2
+    end
+
     def bad_request?
-      response.status == 500
+      response.status != 200
     end
   end
 end

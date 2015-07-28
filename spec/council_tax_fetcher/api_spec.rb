@@ -21,7 +21,8 @@ RSpec.describe CouncilTaxFetcher::API do
         instance_double(Faraday::Response, status: 200, body: body)
       end
 
-      it 'calls off to Faraday' do
+      it 'calls off to Faraday', :aggregate_failures do
+        expect(CouncilTaxFetcher::Validate).to receive(:using).with(response)
         expect(connection).to receive(:get)
           .with('/endpoint/Some%20Bad%20URL', options)
           .and_return(response)

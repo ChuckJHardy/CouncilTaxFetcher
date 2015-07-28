@@ -25,5 +25,16 @@ RSpec.describe CouncilTaxFetcher do
         end
       end
     end
+
+    context 'when external api error occurs' do
+      let(:postcode) { '' }
+
+      it 'raises error' do
+        VCR.use_cassette('invalid/council_tax/blank_body') do
+          expect { instance.council_tax }
+            .to raise_error(CouncilTaxFetcher::BlankBody)
+        end
+      end
+    end
   end
 end
