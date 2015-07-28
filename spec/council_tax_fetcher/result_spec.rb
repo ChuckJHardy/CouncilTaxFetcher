@@ -12,12 +12,14 @@ RSpec.describe CouncilTaxFetcher::Result do
       CouncilTaxband: 'D',
       ImprovementIndicator: '',
       LocalAuthorityReferenceNumber: '03Q267000100',
-      Tax: 'Â£1402.08',
-      TaxMonthly: 'Â£116.83',
+      Tax: tax,
+      TaxMonthly: 'Ã‚Â£216.57-Ã‚Â£220.71',
       Year: '2015-16',
       councilWeb: 'wiganmbc.gov.uk'
     }
   end
+
+  let(:tax) { 'Ã‚Â£2,598.88-Ã‚Â£2,648.52' }
 
   describe '#object_or_nil' do
     let(:data) { result.merge!(CouncilTaxband: 'Deleted') }
@@ -34,8 +36,16 @@ RSpec.describe CouncilTaxFetcher::Result do
         address: '1, DRAPERS COURT, LOWTON, WARRINGTON, WA3 2BT',
         reference: '03Q267000100',
         county: 'WIGAN',
-        yearly: 140_208,
-        monthly: 116_83,
+        yearly: {
+          range: true,
+          from: 259_888,
+          to: 264_852
+        },
+        monthly: {
+          range: true,
+          from: 216_57,
+          to: 220_71
+        },
         year: '2015-16',
         link: 'wiganmbc.gov.uk',
         estimated_active: true,
@@ -46,13 +56,22 @@ RSpec.describe CouncilTaxFetcher::Result do
     it 'returns expected hash' do
       expect(instance.as_hash).to eq(expected_hash)
     end
+
+    context 'when single value amount' do
+      let(:tax) { 'Ã‚Â£2,598.88' }
+
+      it 'returns expected hash' do
+        expect(instance.as_hash[:yearly])
+          .to eq(range: false, from: 259_888, to: 259_888)
+      end
+    end
   end
 
   describe '#tax' do
     it 'returns Tax Object', :aggregate_failures do
       expect(instance.tax).to be_an_instance_of(described_class::Tax)
-      expect(instance.tax.year).to eq(140_208)
-      expect(instance.tax.month).to eq(116_83)
+      expect(instance.tax.year).to eq(range: true, from: 259_888, to: 264_852)
+      expect(instance.tax.month).to eq(range: true, from: 216_57, to: 220_71)
     end
   end
 end

@@ -5,8 +5,8 @@ RSpec.describe CouncilTaxFetcher do
     described_class.new(postcode: postcode, address: address)
   end
 
-  let(:postcode) { 'WA3 2BT' }
-  let(:address) { '1 Drapers Court, Lowton, Warrington, WA3 2BT' }
+  let(:postcode) { 'TQ137NY' }
+  let(:address) { 'Poundsgate, Newton Abbot, Devon TQ13 7NY' }
 
   describe '#council_tax' do
     it 'returns CouncilTaxFinder object' do
