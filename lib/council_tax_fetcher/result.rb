@@ -56,17 +56,29 @@ class CouncilTaxFetcher
       end
 
       def year
-        cents(@data[:Tax])
+        range(@data[:Tax])
       end
 
       def month
-        cents(@data[:TaxMonthly])
+        range(@data[:TaxMonthly])
       end
 
       private
 
+      def range(key)
+        values = cents(key)
+
+        {
+          range: values.size > 1,
+          from: values.first,
+          to: values.last || values.first
+        }
+      end
+
       def cents(string)
-        string.downcase.gsub(/[^0-9\s]/i, '').to_i
+        string.downcase.split('-').map do |str|
+          str.gsub(/[^0-9\s]/i, '').to_i
+        end
       end
     end
   end
