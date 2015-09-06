@@ -12,7 +12,13 @@ class CouncilTaxFetcher
 
     def get(url:, options: {})
       connection.get(URI.escape(url), options).tap do |response|
-        Validate.using(response)
+        Validate.with(
+          method: :get,
+          domain: domain,
+          url: url,
+          options: options,
+          response: response
+        )
       end
     end
 
