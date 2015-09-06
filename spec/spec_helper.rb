@@ -5,6 +5,7 @@ require 'council_tax_fetcher'
 
 CouncilTaxFetcher.configure do |config|
   config.verbose = false
+  config.log = true
 end
 
 RSpec.configure do |config|
@@ -21,5 +22,13 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.syntax = :expect
     mocks.verify_partial_doubles = true
+  end
+
+  config.before do
+    CouncilTaxFetcher.configuration.log = false
+  end
+
+  config.after do
+    CouncilTaxFetcher.configuration.log = false
   end
 end

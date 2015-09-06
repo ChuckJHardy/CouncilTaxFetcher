@@ -1,33 +1,55 @@
 class CouncilTaxFetcher
-  BlankBody = Class.new(StandardError)
-  BadRequest = Class.new(StandardError)
-
   class Validate
-    def initialize(response:)
+    def initialize(method:, domain:, url:, options:, response:)
+      @method = method
+      @domain = domain
+      @url = url
+      @options = options
       @response = response
     end
 
-    def self.using(response)
-      new(response: response).validate
+    def self.with(*args)
+      new(*args).validate
     end
 
     def validate
-      fail CouncilTaxFetcher::BlankBody, response if blank_body?
-      fail CouncilTaxFetcher::BadRequest, response if bad_request?
+      log
+
+      # rubocop:disable Style/RaiseArgs
+      fail BlankBody.new(error_args) if blank_body?
+      fail BadRequest.new(error_args) if bad_request?
+      # rubocop:enable Style/RaiseArgs
+
+      true
     end
-
-    protected
-
-    attr_reader :response
 
     private
 
+    attr_reader :response
+
+    def error_args
+      {
+        domain: @domain,
+        url: @url,
+        options: @options,
+        status: response.status,
+        body: response.body
+      }
+    end
+
     def blank_body?
-      response.body.length < 2
+      response.body.to_s.length < 2
     end
 
     def bad_request?
       response.status != 200
     end
+
+    def log
+      CouncilTaxFetcher.configuration.logger.info(
+        "-> CouncilTaxFetcher Response: #{@method.upcase}\n#{error_args}"
+      ) if CouncilTaxFetcher.configuration.log
+    end
   end
 end
+
