@@ -30,9 +30,9 @@ RSpec.describe CouncilTaxFetcher do
       let(:postcode) { '' }
 
       it 'raises error' do
-        VCR.use_cassette('invalid/council_tax/blank_body') do
+        VCR.use_cassette('invalid/council_tax/blank_postcode') do
           expect { instance.council_tax }
-            .to raise_error(CouncilTaxFetcher::BlankBody)
+            .to raise_error(CouncilTaxFetcher::BadRequest)
         end
       end
     end

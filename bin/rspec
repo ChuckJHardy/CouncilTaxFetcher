@@ -14,4 +14,5 @@ require 'rubygems'
 require 'bundler/setup'
 
 system('bin/rubocop')
+
 load Gem.bin_path('rspec-core', 'rspec')

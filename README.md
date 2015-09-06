@@ -16,9 +16,13 @@ And then execute:
 
     CouncilTaxFetcher.configure do |config|
       config.verbose = true
+      config.log = true
+      config.logger = Rails.logger
     end
 
 * `verbose` sets the logger level `false`
+* `log` should log message be logged `false`
+* `logger` Logger object. `Logger`
 
 ## Usage
 

@@ -1,3 +1,6 @@
+require 'logger'
+
+require 'council_tax_fetcher/error'
 require 'council_tax_fetcher/configuration'
 require 'council_tax_fetcher/dto'
 require 'council_tax_fetcher/council_tax_finder_dto'
@@ -5,6 +8,8 @@ require 'council_tax_fetcher/council_tax_finder'
 
 class CouncilTaxFetcher
   extend Configure
+
+  BadRequest = Class.new(Error)
 
   def initialize(postcode:, address:)
     @postcode = postcode
