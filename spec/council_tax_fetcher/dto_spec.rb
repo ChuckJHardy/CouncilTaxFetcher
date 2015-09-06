@@ -11,6 +11,9 @@ RSpec.describe CouncilTaxFetcher::DTO, type: :dto do
 
     before do
       allow_any_instance_of(described_class).to receive(:endpoint) { endpoint }
+
+      CouncilTaxFetcher.configuration.log = true
+      expect(CouncilTaxFetcher.configuration.logger).to receive(:info)
     end
 
     it 'calls off to API and returns response body' do
@@ -18,6 +21,10 @@ RSpec.describe CouncilTaxFetcher::DTO, type: :dto do
         .with(url: endpoint, options: options) { double(body: {}) }
 
       expect(subject).to eq({})
+    end
+
+    after do
+      CouncilTaxFetcher.configuration.log = false
     end
   end
 

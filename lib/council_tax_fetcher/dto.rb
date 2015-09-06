@@ -13,6 +13,7 @@ class CouncilTaxFetcher
     end
 
     def response(method)
+      log(method: method)
       API.public_send(method, url: endpoint, options: params).body
     end
 
@@ -22,6 +23,22 @@ class CouncilTaxFetcher
 
     def endpoint
       fail NotImplementedError, 'Inheriting class must implement'
+    end
+
+    private
+
+    def domain
+      CouncilTaxFetcher.configuration.domain
+    end
+
+    def log(method:)
+      CouncilTaxFetcher.configuration.logger.info([
+        "-> CouncilTaxFetcher Request: #{method.upcase}",
+        "domain: #{domain}",
+        "endpoint: #{endpoint}",
+        "api_key: NONE",
+        "params: #{params}"
+      ].join("\n")) if CouncilTaxFetcher.configuration.log
     end
   end
 end
