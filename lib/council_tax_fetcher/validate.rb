@@ -16,7 +16,6 @@ class CouncilTaxFetcher
       log
 
       # rubocop:disable Style/RaiseArgs
-      fail BlankBody.new(error_args) if blank_body?
       fail BadRequest.new(error_args) if bad_request?
       # rubocop:enable Style/RaiseArgs
 
@@ -35,10 +34,6 @@ class CouncilTaxFetcher
         status: response.status,
         body: response.body
       }
-    end
-
-    def blank_body?
-      response.body.to_s.length < 2
     end
 
     def bad_request?

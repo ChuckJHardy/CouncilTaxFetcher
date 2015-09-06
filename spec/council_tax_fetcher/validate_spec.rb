@@ -44,27 +44,6 @@ describe CouncilTaxFetcher::Validate do
     end
   end
 
-  describe 'When Blank Body' do
-    let(:status) { 200 }
-    let(:body) { '' }
-
-    it 'raises error' do
-      expect { validator }.to raise_error(
-        CouncilTaxFetcher::BlankBody
-      ) do |e|
-        expect(e.message).to eq(
-          domain: 'www',
-          url: 'example.com',
-          options: { query: 1 },
-          response: {
-            status: status,
-            body: body
-          }
-        )
-      end
-    end
-  end
-
   after do
     CouncilTaxFetcher.configuration.log = false
   end
