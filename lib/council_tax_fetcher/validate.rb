@@ -47,4 +47,3 @@ class CouncilTaxFetcher
     end
   end
 end
-

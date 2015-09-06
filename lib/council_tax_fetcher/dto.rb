@@ -36,7 +36,7 @@ class CouncilTaxFetcher
         "-> CouncilTaxFetcher Request: #{method.upcase}",
         "domain: #{domain}",
         "endpoint: #{endpoint}",
-        "api_key: NONE",
+        'api_key: NONE',
         "params: #{params}"
       ].join("\n")) if CouncilTaxFetcher.configuration.log
     end
